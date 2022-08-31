@@ -111,6 +111,7 @@ export const Home = ({ navigation }) => {
         handleChronoMode(Texts.chronoVariables.workingTime),
         createJournee(userId, accessToken).then((res) => {
           setData('id_journee', res.data.id_journee.toString())
+          setData('last_chronoMode', Date.now().toString())
         }))
       : (dispatch(setIsActive(false)),
         closeJournee(
@@ -297,6 +298,7 @@ export const Home = ({ navigation }) => {
         getData('last_chronoMode').then((res) => {
           let ecart = Date.now() - parseInt(res)
           setDifference(ecart / 1000)
+          // alert(difference)
         })
         removeItem('last_chronoMode')
         setData('last_chronoMode', Date.now().toString())

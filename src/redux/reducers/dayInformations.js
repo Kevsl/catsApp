@@ -21,6 +21,7 @@ const dayInformationsSlice = createSlice({
     showSecondaryMenu: false,
     date_chronomode: Date,
     isActive: false,
+    saveNeeded: false,
   },
   reducers: {
     incrementAmplitude(state, action) {
@@ -80,6 +81,9 @@ const dayInformationsSlice = createSlice({
     setIsActive: (state, action) => {
       state.isActive = action.payload
     },
+    setSaveNeeded: (state, action) => {
+      state.saveNeeded = action.payload
+    },
   },
 })
 
@@ -101,6 +105,7 @@ export const getDoubleCrew = (state) => state.dayInformations.isDoubleCrew
 export const getShowSecondaryMenu = (state) =>
   state.dayInformations.showSecondaryMenu
 export const getIsActive = (state) => state.dayInformations.isActive
+export const getSaveNeeded = (state) => state.dayInformations.saveNeeded
 
 export const {
   incrementAmplitude,
@@ -116,6 +121,7 @@ export const {
   resetWorkingTime,
   resetAll,
   resetServiceTime,
+  setSaveNeeded,
   setRestTime,
   setChronoMode,
   setDoubleCrew,
