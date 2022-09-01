@@ -94,6 +94,44 @@ export async function updateChronoMode(chronomode, date_chronomode, userId) {
     .then((res) => res)
 }
 
+export async function updateJournee(
+  userId,
+  accessToken,
+  id_journee,
+  drivingTime,
+  breakTime,
+  serviceTime
+) {
+  let axiosConfig = {
+    headers: {
+      //prettier-ignore
+      'Authorization': `Bearer ${accessToken}`,
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    },
+  }
+  let url = `${REACT_APP_API_URL}day/` + `${id_journee}`
+
+  return await axios
+    .patch(
+      url,
+      qs.stringify({
+        utilisateur_id: userId,
+        conduite_journee: drivingTime,
+        repos_journee: breakTime,
+        service_journee: serviceTime,
+      }),
+      axiosConfig
+    )
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => {
+      throw err
+    })
+}
+
 export async function deleteChronoMode(chronomode, userId) {
   let axiosConfig = {
     headers: {

@@ -16,6 +16,7 @@ import {
   getWorkingTime,
   getRestTime,
   getDispositionTime,
+  getSaveNeeded,
   getSleepTime,
   getDrivingTime,
   getDailyDrivingTime,
@@ -41,12 +42,14 @@ import {
   setShowSecondaryMenu,
   setChronoMode,
   setIsActive,
+  setSaveNeeded,
 } from '../redux/reducers/dayInformations'
 import { createChronoMode } from '../Services/timeDatas/chronomodeService'
 import { getData, setData, removeItem } from '../utils/localStorage'
 import {
   createJournee,
   closeJournee,
+  updateJournee,
 } from '../Services/timeDatas/journeeService'
 
 export const Home = ({ navigation }) => {
@@ -98,12 +101,24 @@ export const Home = ({ navigation }) => {
 
   const [dayId, setDayId] = useState('')
   const [userId, setUserId] = useState('')
+  const saveNeeded = useSelector(getSaveNeeded)
+  let [saveCounter, setSaveCounter] = useState(0)
 
   useEffect(() => {
     getData('access_token').then((res) => setAccessToken(res))
     getData('utilisateur_id').then((response) => setUserId(response))
     getData('first_name').then((ret) => setFirstName(ret))
   }, [])
+
+  // useEffect(() => {
+  //   saveCounter === 0 && dayId
+  //     ? getDay(dayId).then((res) => {
+  //         dispatch(setDrivingTime(res.data.driving_time))
+  //         dispatch(setDrivingTime(res.data.driving_time))
+  //         dispatch(setDrivingTime(res.data.driving_time))
+  //       })
+  //     : null
+  // }, [saveCounter])
 
   function handleDay(value) {
     value === true
@@ -303,6 +318,18 @@ export const Home = ({ navigation }) => {
         removeItem('last_chronoMode')
         setData('last_chronoMode', Date.now().toString())
 
+        saveCounter > 10
+          ? (updateJournee(
+              userId,
+              accessToken,
+              dayId,
+              drivingTime,
+              breakTime,
+              serviceTime
+            ).then((res) => res),
+            setSaveCounter(0),
+            alert(dayId))
+          : setSaveCounter(saveCounter++)
         switch (chronoMode) {
           case Texts.chronoVariables.drivingTime:
             dispatch(incrementDrivingTime(difference))

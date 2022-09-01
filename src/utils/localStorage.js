@@ -27,7 +27,7 @@ export async function removeItem(item) {
     alert(e)
   }
 
-  console.log('Done.')
+  console.log('removedOne.')
 }
 
 export async function removeFew() {
@@ -44,7 +44,7 @@ export async function removeFew() {
     // remove error
   }
 
-  console.log('Done')
+  console.log('removedFew')
 }
 
 export async function clearAll() {
@@ -54,5 +54,5 @@ export async function clearAll() {
     // clear error
   }
 
-  console.log('Done.')
+  console.log('Cleared.')
 }
