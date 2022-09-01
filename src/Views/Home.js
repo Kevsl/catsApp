@@ -133,9 +133,9 @@ export const Home = ({ navigation }) => {
           userId,
           accessToken,
           dayId,
-          drivingTime,
-          breakTime,
-          serviceTime
+          Math.trunc(drivingTime),
+          Math.trunc(breakTime),
+          Math.trunc(serviceTime)
         ),
         removeItem('id_journee'))
   }
@@ -318,18 +318,18 @@ export const Home = ({ navigation }) => {
         removeItem('last_chronoMode')
         setData('last_chronoMode', Date.now().toString())
 
-        saveCounter > 10
-          ? (updateJournee(
+        saveCounter > 12
+          ? (getData('id_journee').then((res) => setDayId(res)),
+            updateJournee(
               userId,
               accessToken,
               dayId,
-              drivingTime,
-              breakTime,
-              serviceTime
+              Math.trunc(drivingTime),
+              Math.trunc(breakTime),
+              Math.trunc(serviceTime)
             ).then((res) => res),
-            setSaveCounter(0),
-            alert(dayId))
-          : setSaveCounter(saveCounter++)
+            setSaveCounter(0))
+          : (setSaveCounter(saveCounter++), console.log(saveCounter))
         switch (chronoMode) {
           case Texts.chronoVariables.drivingTime:
             dispatch(incrementDrivingTime(difference))
