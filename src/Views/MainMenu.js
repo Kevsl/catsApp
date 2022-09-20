@@ -10,8 +10,8 @@ export const MainMenu = ({ navigation }) => {
   return (
     <SafeAreaView style={MainMenuStyle.menuLayer}>
       <TouchableOpacity
-        title="Learn More"
-        accessibilityLabel="Learn more about this purple button"
+        title=" Main menu"
+        accessibilityLabel="Display main menu "
         style={MainMenuStyle.PrimaryMenuButton}
         onPress={() => navigation.goBack()}
       >

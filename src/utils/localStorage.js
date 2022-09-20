@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export async function setData(key, value) {
   try {
     await AsyncStorage.setItem(key, value)
+    console.log(value)
   } catch (e) {
     // Only in dev
     alert(key)

@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from 'react-native'
+import { SafeAreaView, Text, View, Image, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Pie from 'react-native-pie'
 import menuBurger from '../Assets/icons/burger.png'

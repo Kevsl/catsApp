@@ -21,9 +21,7 @@ export const userSlice = createSlice({
     setId: (state, action) => {
       state.id = action.payload
     },
-    resetUserInfos: (state, action) => {
-      return user.initialState
-    },
+    resetUserInfos: (state, action) => initialState,
   },
 })
 

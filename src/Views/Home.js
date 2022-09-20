@@ -12,6 +12,7 @@ import hammer from '../Assets/icons/hammer.png'
 import dispo from '../Assets/icons/available.png'
 import secondaryMenuButton from '../Assets/icons/secondaryMenu.png'
 import {
+  adjustRestTime,
   getAmplitude,
   getWorkingTime,
   getRestTime,
@@ -34,10 +35,13 @@ import {
   incrementRestTime,
   incrementServiceTime,
   incrementWorkingTime,
+  resetAmplitude,
   resetDrivingTime,
   resetRestTime,
   resetServiceTime,
   resetWorkingTime,
+  resetAll,
+  resetDailyServiceTime,
   setRestTime,
   setShowSecondaryMenu,
   setChronoMode,
@@ -110,23 +114,13 @@ export const Home = ({ navigation }) => {
     getData('first_name').then((ret) => setFirstName(ret))
   }, [])
 
-  // useEffect(() => {
-  //   saveCounter === 0 && dayId
-  //     ? getDay(dayId).then((res) => {
-  //         dispatch(setDrivingTime(res.data.driving_time))
-  //         dispatch(setDrivingTime(res.data.driving_time))
-  //         dispatch(setDrivingTime(res.data.driving_time))
-  //       })
-  //     : null
-  // }, [saveCounter])
-
   function handleDay(value) {
     value === true
       ? (dispatch(setIsActive(true)),
         handleChronoMode(Texts.chronoVariables.workingTime),
         createJournee(userId, accessToken).then((res) => {
           setData('id_journee', res.data.id_journee.toString())
-          setData('last_chronoMode', Date.now().toString())
+          setData(Texts.chronoVariables.workingTime, Date.now().toString())
         }))
       : (dispatch(setIsActive(false)),
         closeJournee(
@@ -137,10 +131,18 @@ export const Home = ({ navigation }) => {
           Math.trunc(breakTime),
           Math.trunc(serviceTime)
         ),
-        removeItem('id_journee'))
+        removeItem('id_journee'),
+        dispatch(resetServiceTime()),
+        dispatch(resetWorkingTime()),
+        dispatch(resetDrivingTime()),
+        dispatch(resetRestTime()),
+        dispatch(resetAmplitude()),
+        dispatch(resetDailyServiceTime()))
   }
 
-  // ChronoTachygraph manager
+  // Send last chronomodes
+
+  // Handle rest times period
   async function handleChronoMode(chronoValue) {
     if (chronoMode !== chronoValue) {
       createChronoMode(chronoValue, userId, accessToken)
@@ -148,7 +150,7 @@ export const Home = ({ navigation }) => {
           res
         })
         .catch((err) => {
-          alert(err)
+          console.log(err)
         })
     }
 
@@ -313,23 +315,21 @@ export const Home = ({ navigation }) => {
         getData('last_chronoMode').then((res) => {
           let ecart = Date.now() - parseInt(res)
           setDifference(ecart / 1000)
-          // alert(difference)
         })
         removeItem('last_chronoMode')
         setData('last_chronoMode', Date.now().toString())
 
-        saveCounter > 12
-          ? (getData('id_journee').then((res) => setDayId(res)),
-            updateJournee(
-              userId,
-              accessToken,
-              dayId,
-              Math.trunc(drivingTime),
-              Math.trunc(breakTime),
-              Math.trunc(serviceTime)
-            ).then((res) => res),
-            setSaveCounter(0))
-          : (setSaveCounter(saveCounter++), console.log(saveCounter))
+        getData('id_journee').then((res) => setDayId(res))
+
+        updateJournee(
+          userId,
+          accessToken,
+          dayId,
+          Math.trunc(drivingTime),
+          Math.trunc(breakTime),
+          Math.trunc(serviceTime)
+        ).then((res) => res)
+
         switch (chronoMode) {
           case Texts.chronoVariables.drivingTime:
             dispatch(incrementDrivingTime(difference))
@@ -403,9 +403,7 @@ export const Home = ({ navigation }) => {
             </Text>
           </View>
         ) : null}
-        <Text style={HomeStyle.statusBarDay}>
-          Amplitude : {secondsToHm(amplitude)}
-        </Text>
+        <Text style={HomeStyle.statusBarDay}>Amplitude : {amplitude}</Text>
       </View>
       <View
         style={

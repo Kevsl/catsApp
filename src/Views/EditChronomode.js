@@ -5,7 +5,6 @@ import {
   ActivityIndicator,
   SafeAreaView,
   Text,
-  FlatList,
   View,
   Image,
   TouchableOpacity,
@@ -43,6 +42,7 @@ export const EditChronoMode = ({ navigation }) => {
   useEffect(() => {
     handleDatas()
   }, [accessToken])
+
   return (
     <SafeAreaView>
       <TouchableOpacity

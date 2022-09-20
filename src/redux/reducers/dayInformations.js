@@ -5,6 +5,7 @@ const dayInformationsSlice = createSlice({
   initialState: {
     drivingTime: 0,
     dailyDrivingTime: 0,
+    dailyServiceTime: 0,
     restTime: 0,
     workingTime: 0,
     dispositionTime: 0,
@@ -16,7 +17,6 @@ const dayInformationsSlice = createSlice({
     oldLongitude: 0,
     chronoMode: '',
     serviceTime: 0,
-    dailyServiceTime: 0,
     isDoubleCrew: false,
     showSecondaryMenu: false,
     date_chronomode: Date,
@@ -63,6 +63,16 @@ const dayInformationsSlice = createSlice({
     resetServiceTime(state) {
       state.serviceTime = 0
     },
+    resetAmplitude(state) {
+      state.amplitude = 0
+    },
+    resetDateChronomode(state) {
+      state.amplitude = 0
+    },
+    resetDailyServiceTime(state) {
+      state.dailyServiceTime = 0
+    },
+
     setRestTime: (state, action) => {
       state.restTime = action.payload
     },
@@ -76,7 +86,7 @@ const dayInformationsSlice = createSlice({
       state.showSecondaryMenu = action.payload
     },
     resetAll: (state, action) => {
-      return dayInformationsSlice.initialState
+      return state.initialState
     },
     setIsActive: (state, action) => {
       state.isActive = action.payload
@@ -116,8 +126,10 @@ export const {
   incrementRestTime,
   incrementServiceTime,
   incrementWorkingTime,
+  resetAmplitude,
   resetDrivingTime,
   resetRestTime,
+  resetDailyServiceTime,
   resetWorkingTime,
   resetAll,
   resetServiceTime,
