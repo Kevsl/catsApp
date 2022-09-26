@@ -5,6 +5,7 @@ import Store from './store'
 import React from 'react'
 import { NavBar } from './Components/NavBar'
 import { Home } from './Views/Home'
+import { About } from './Views/ About'
 
 const Stack = createNativeStackNavigator()
 
@@ -15,6 +16,14 @@ const App = ({ navigation }) => {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{
+            animation: 'slide_from_right',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="About"
+          component={About}
           options={{
             animation: 'slide_from_right',
             headerShown: false,
