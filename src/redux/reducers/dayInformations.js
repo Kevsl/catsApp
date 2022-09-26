@@ -19,7 +19,7 @@ const dayInformationsSlice = createSlice({
     serviceTime: 0,
     isDoubleCrew: false,
     showSecondaryMenu: false,
-    date_chronomode: Date,
+    dateChronomode: 0,
     isActive: false,
     saveNeeded: false,
   },
@@ -85,14 +85,55 @@ const dayInformationsSlice = createSlice({
     setShowSecondaryMenu: (state, action) => {
       state.showSecondaryMenu = action.payload
     },
-    resetAll: (state, action) => {
-      return state.initialState
+    resetDay: (state, action) => {
+      // prettier-ignore
+      state.dailyServiceTime = 0,
+      state.dailyDrivingTime = 0,
+      state.drivingTime = 0,
+      state.chronoMode = 0,
+      state.amplitude = 0,
+      state.serviceTime = 0,
+      state.dispositionTime= 0
     },
     setIsActive: (state, action) => {
       state.isActive = action.payload
     },
     setSaveNeeded: (state, action) => {
       state.saveNeeded = action.payload
+    },
+    setDateChronomode: (state, action) => {
+      state.dateChronomode = action.payload
+    },
+    setDriveIncrement: (state, action) => {
+      ;(state.drivingTime += action.payload),
+        (state.amplitude += action.payload),
+        (state.serviceTime += action.payload),
+        (state.dailyServiceTime += action.payload),
+        (state.dailyDrivingTime += action.payload)
+    },
+    setWorkIncrement: (state, action) => {
+      ;(state.workingTime += action.payload),
+        (state.amplitude += action.payload),
+        (state.serviceTime += action.payload),
+        (state.dailyServiceTime += action.payload)
+    },
+    setDispositionIncrement: (state, action) => {
+      ;(state.dispositionTime += action.payload),
+        (state.amplitude += action.payload),
+        (state.serviceTime += action.payload),
+        (state.dailyServiceTime += action.payload)
+    },
+    setRestIncrement: (state, action) => {
+      //prettier-ignore
+      (state.dispositionTime = action.payload),
+      (state.amplitude = action.payload)
+    },
+    setReset45: (state, action) => {
+      //prettier-ignore
+      state.workingTime = 0,
+      state.drivingTime = 0,
+      state.serviceTime = 0,
+      state.dispositionTime= 0
     },
   },
 })
@@ -116,6 +157,7 @@ export const getShowSecondaryMenu = (state) =>
   state.dayInformations.showSecondaryMenu
 export const getIsActive = (state) => state.dayInformations.isActive
 export const getSaveNeeded = (state) => state.dayInformations.saveNeeded
+export const getDateChronomode = (state) => state.dayInformations.dateChronomode
 
 export const {
   incrementAmplitude,
@@ -132,13 +174,20 @@ export const {
   resetDailyServiceTime,
   resetWorkingTime,
   resetAll,
+  resetDay,
   resetServiceTime,
-  setSaveNeeded,
-  setRestTime,
   setChronoMode,
+  setDateChronomode,
+  setDispositionIncrement,
   setDoubleCrew,
-  setShowSecondaryMenu,
+  setDriveIncrement,
   setIsActive,
+  setReset45,
+  setRestTime,
+  setRestIncrement,
+  setSaveNeeded,
+  setShowSecondaryMenu,
+  setWorkIncrement,
 } = dayInformationsSlice.actions
 
 export default dayInformationsSlice.reducer
