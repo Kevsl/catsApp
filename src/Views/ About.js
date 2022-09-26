@@ -9,10 +9,10 @@ import {
 } from 'react-native'
 import { NavBar } from '../Components/NavBar'
 import { HomeStyle } from '../Styles/Home'
-export const Home = ({ navigation }) => {
+export const About = ({ navigation }) => {
   return (
     <View style={HomeStyle.container}>
-      <Text>Home</Text>
+      <Text>About</Text>
       <Text>Welcome to CalculaCat 2022 !!</Text>
       <NavBar />
     </View>
