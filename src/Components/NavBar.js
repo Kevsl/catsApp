@@ -1,6 +1,10 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-export const NavBar = ({ navigation }) => {
+import { useNavigation } from '@react-navigation/native'
+
+export const NavBar = () => {
+  const navigation = useNavigation()
+
   return (
     <View>
       <TouchableOpacity
