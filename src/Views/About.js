@@ -9,7 +9,6 @@ import {
   Alert,
 } from 'react-native'
 import { NavBar } from '../Components/NavBar'
-import user from '../redux/reducers/user'
 import { HomeStyle } from '../Styles/Home'
 import { catApi } from '../Services/catApi'
 
