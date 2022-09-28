@@ -23,4 +23,11 @@ export const HomeStyle = (StyleSheet.createstyle = StyleSheet.create({
     width: '80%',
     height: 200,
   },
+  datas: {
+    textAlign: 'center',
+    width: '75%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 }))

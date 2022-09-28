@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getSearchedContent } from '../Services/Nasa'
-import { Card } from '../Components/Card'
+import { Card } from '../Components/Layouts/Card'
 import { getData, setData, removeItem } from '../utils/localStorage'
 
 export const Good = ({ navigation }) => {

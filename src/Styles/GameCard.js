@@ -5,11 +5,11 @@ export const GameCardStyle = (StyleSheet.createstyle = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     width: '80%',
-    height: 200,
+    marginVertical: 20,
   },
-
   image: {
-    flex: 1,
-    width: '100%',
+    maxWidth: 300,
+    maxHeight: 200,
+    borderRadius: 9,
   },
 }))

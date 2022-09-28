@@ -1,7 +1,7 @@
 import moment from 'moment'
 import React from 'react'
 import { Text, View, Image } from 'react-native'
-import { CardStyle } from '../Styles/Card'
+import { CardStyle } from '../../Styles/Card'
 import 'moment/locale/fr' // without this line it didn't work
 
 export const Card = (props) => {

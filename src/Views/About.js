@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-  Alert,
-} from 'react-native'
-import { NavBar } from '../Components/NavBar'
+import { Text, View, Image, TextInput } from 'react-native'
 import { HomeStyle } from '../Styles/Home'
 import { catApi } from '../Services/catApi'
 
