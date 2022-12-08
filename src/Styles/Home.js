@@ -7,27 +7,24 @@ export const HomeStyle = (StyleSheet.createstyle = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 80,
   },
-  input: {
-    width: 80,
-    backgroundColor: '#e5e5e5',
-    height: 30,
+  coordinates: {
+    position: 'absolute',
+    bottom: 30,
   },
-  image: {
-    width: '100%',
-    height: 200,
-    borderRadius: 9,
-  },
-  button: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    width: '80%',
-    height: 200,
-  },
-  datas: {
-    textAlign: 'center',
-    width: '75%',
+  nav: {
+    marginVertical: 30,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  gazButton: {
+    marginVertical: 10,
+    border: '1px solid #FCA311',
+    borderWidth: 2,
+    borderColor: '#FCA311',
+    padding: 5,
+    borderRadius: 9,
+    marginHorizontal: 10,
   },
 }))

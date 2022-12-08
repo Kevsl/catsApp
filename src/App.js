@@ -24,38 +24,6 @@ const App = ({ navigation }) => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="About"
-          component={About}
-          options={{
-            animation: 'slide_from_right',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Simple"
-          component={Easy}
-          options={{
-            animation: 'slide_from_right',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Good"
-          component={Good}
-          options={{
-            animation: 'slide_from_right',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Expert"
-          component={Expert}
-          options={{
-            animation: 'slide_from_right',
-            headerShown: false,
-          }}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   )
